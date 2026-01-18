@@ -1023,8 +1023,8 @@
       
       // Render: Line 1 (notes), Line 2 (Roman numerals), Line 3 (functions)
       document.getElementById('scale-result').innerHTML = 
-        `<span class="chord-name">${scaleNotesLine}</span><br>` +
-        `<span class="chord-notes">${romanNumeralsLine}</span><br><br>` +
+        `<span class="chord-name" style="font-family: 'Courier New', monospace;">${scaleNotesLine}</span><br>` +
+        `<span class="chord-notes" style="font-family: 'Courier New', monospace;">${romanNumeralsLine}</span><br><br>` +
         chordFunctions;
 
       // Render triads (compact format: I C - E - G (C Major), then empty line, then ii D - F - A (D Minor), etc.)
