@@ -485,18 +485,69 @@ git diff HEAD~1 HEAD
 
 ### Testing Checklist (Before Every Commit)
 
-**MUST COMPLETE ALL TESTS:**
+Testing is divided into two categories:
 
-- [ ] **Scale Notes Display**: All notes show correctly in table
-- [ ] **Roman Numerals**: Proper alignment with notes
-- [ ] **Scale Triads**: All 7 degrees show correct triads
-- [ ] **Scale Chords**: All chords list correctly
+#### 1. FUNCTIONALITY TESTING
+Verify that the code works correctly from top to bottom:
+
+**Code Structure Tests:**
+- [ ] **Variables**: All constants (NOTES, SCALES, CHORDS, etc.) are defined correctly
+- [ ] **Functions**: All functions execute without errors
+  - `getNoteIndex()` - Returns correct index for all 12 notes
+  - `getScaleNotes()` - Calculates scale notes correctly
+  - `getScaleTriads()` - Generates triads for all scale degrees
+  - `getAllChordsForScale()` - Lists all chords for a scale
+  - `applyEnharmonicSpelling()` - Applies correct enharmonic spelling
+  - `getTriadQuality()` - Determines correct chord quality
+  - `getRomanNumerals()` - Generates correct Roman numerals
+- [ ] **Data Structures**: All arrays and objects contain expected data
+- [ ] **Event Handlers**: Dropdown changes trigger updates correctly
+- [ ] **UI Updates**: Display sections show/hide correctly
+- [ ] **Error Handling**: Invalid inputs show appropriate errors
 - [ ] **No Console Errors**: Browser console is clean
-- [ ] **All Scales Tested**: At least one from each category
-- [ ] **All Root Notes Tested**: At least 3-4 different roots
-- [ ] **Edge Cases**: Chromatic, diminished, pentatonic scales
-- [ ] **Accidentals**: Scales with ♭, ♯, ° symbols display correctly
-- [ ] **Responsive**: Works on mobile/tablet view
+
+**Integration Tests:**
+- [ ] **Dropdown Selection**: Both dropdowns work independently
+- [ ] **Auto-Update**: Display updates immediately when both selected
+- [ ] **Clear Selection**: Results hide when one dropdown is cleared
+- [ ] **Multiple Selections**: Changing selections updates display correctly
+
+#### 2. CONTENT TESTING
+Verify that all displayed content is accurate and correct:
+
+**Scale Notes Display:**
+- [ ] **Note Names**: All notes use correct enharmonic spelling
+- [ ] **Scale Degrees**: Degree numbers match the scale type
+- [ ] **Roman Numerals**: Proper case and symbols (I, ii, iii°, ♯IV, etc.)
+- [ ] **Chord Functions**: Tonic, Supertonic, Mediant, etc. are correct for each scale type
+- [ ] **Bebop Scales**: Major Bebop, Minor Bebop, Dominant Bebop show correct function names
+
+**Scale Triads Display:**
+- [ ] **Roman Numerals**: Correct case and symbols for each degree
+- [ ] **Triad Notes**: Correct notes for each triad (root, 3rd, 5th)
+- [ ] **Chord Quality**: Major, Minor, Diminished, Augmented are correct
+- [ ] **Root Notes**: Correct root note for each degree
+
+**Scale Chords Display:**
+- [ ] **Chord Names**: Correct naming (e.g., "C Diminished" not "CDiminished")
+- [ ] **Chord Notes**: Correct note names with proper enharmonic spelling
+- [ ] **All Chords**: All 30+ chords are listed
+- [ ] **Note Spelling**: Notes use correct accidentals (♭ vs ♯) based on context
+
+**Specific Content Checks:**
+- [ ] **C Major**: C D E F G A B (natural notes)
+- [ ] **C Diminished**: C - Eb - Gb (not C - D# - F#)
+- [ ] **C Major Bebop**: Shows "Tonic" for C, not "Scale Degree"
+- [ ] **All Scales**: Verify at least one from each category
+- [ ] **All Root Notes**: Test with C, C#, D, Eb, E, F, F#, G, Ab, A, Bb, B
+
+**Edge Cases:**
+- [ ] **Chromatic Scale**: All 12 notes with correct accidentals
+- [ ] **Diminished Scales**: 8 notes with correct accidentals
+- [ ] **Pentatonic Scales**: 5 notes with correct accidentals
+- [ ] **Scales with ♭**: Verify flat symbols display correctly
+- [ ] **Scales with ♯**: Verify sharp symbols display correctly
+- [ ] **Scales with °**: Verify degree symbols display correctly
 
 **If ANY test fails, DO NOT COMMIT. Fix the issue first.**
 
