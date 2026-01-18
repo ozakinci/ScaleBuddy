@@ -654,6 +654,25 @@
           // Note has no accidental, use scale spelling
           return scaleSpelling;
         }
+        // Base name not in scale, check if it's an enharmonic equivalent
+        // For example, D# should become Eb if Eb is in the scale
+        const enharmonicMap = {
+          'C#': 'Db',
+          'D#': 'Eb',
+          'F#': 'Gb',
+          'G#': 'Ab',
+          'A#': 'Bb'
+        };
+        
+        // Check if the enharmonic equivalent is in the scale
+        const enharmonicEquivalent = enharmonicMap[note];
+        if (enharmonicEquivalent) {
+          const enharmonicBase = enharmonicEquivalent.replace(/#|b/g, '');
+          if (degreeMap.has(enharmonicBase)) {
+            return enharmonicEquivalent;
+          }
+        }
+        
         // Base name not in scale, keep original
         return note;
       });
@@ -1013,6 +1032,15 @@
           functionText = functions[index];
         } else if (scaleType === 'locrian') {
           const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
+          functionText = functions[index];
+        } else if (scaleType === 'majorBebop') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'];
+          functionText = functions[index];
+        } else if (scaleType === 'minorBebop') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'];
+          functionText = functions[index];
+        } else if (scaleType === 'dominantBebop') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic', 'Leading Tone'];
           functionText = functions[index];
         } else {
           functionText = 'Scale Degree';
