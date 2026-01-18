@@ -276,10 +276,104 @@ document.addEventListener('DOMContentLoaded', () => { ... });
 
 ## Developer Workflow
 
+### Standard Development Workflow (MANDATORY)
+
+When working with this project, **always follow this sequence**:
+
+#### 1. **Pull First - Check Current State**
+```bash
+# Pull latest changes from GitHub
+git pull origin main
+
+# Check if there are local uncommitted changes
+git status
+```
+
+**If `git status` shows uncommitted changes:**
+- **STOP** - Don't proceed with new changes yet
+- **Decide what to do:**
+  - **Option A**: Commit current changes first, then pull
+    ```bash
+    git add .
+    git commit -m "Your commit message"
+    git pull origin main
+    ```
+  - **Option B**: Stash changes, pull, then reapply
+    ```bash
+    git stash
+    git pull origin main
+    git stash pop
+    ```
+  - **Option C**: Discard local changes (if they're not needed)
+    ```bash
+    git reset --hard HEAD
+    git pull origin main
+    ```
+
+#### 2. **Make Changes**
+- Edit the files as needed
+- **Keep the browser console open** (F12 → Console) to catch JavaScript errors immediately
+
+#### 3. **Test Before Committing**
+**MANDATORY TESTING PROCEDURE:**
+
+```bash
+# 1. Open the HTML file in browser
+#    - Double-click index.html OR
+#    - Use: start index.html (Windows) / open index.html (Mac)
+
+# 2. Test ALL functionality:
+#    - Select each root note (12 total)
+#    - Select each scale type (40+ total)
+#    - Verify:
+#      ✓ Scale notes display correctly
+#      ✓ Roman numerals align properly in table
+#      ✓ Scale triads show correct Roman numerals
+#      ✓ Scale chords list all chords
+#      ✓ No console errors (check browser console)
+#      ✓ Responsive design works on mobile (if possible)
+
+# 3. Test edge cases:
+#    - Chromatic scale (12 notes)
+#    - Diminished scales (8 notes)
+#    - Pentatonic scales (5 notes)
+#    - Scales with accidentals (♭, ♯, °)
+```
+
+#### 4. **Check for Errors**
+```bash
+# Check for JavaScript errors in browser console
+# Check for any warnings or issues
+
+# Verify no syntax errors in HTML/CSS
+# (Browser DevTools will show these)
+```
+
+#### 5. **Commit Changes**
+```bash
+# Add all changed files
+git add .
+
+# Commit with descriptive message
+git commit -m "Brief description of changes
+
+- Detail 1
+- Detail 2
+- What was fixed/added"
+
+# Push to GitHub
+git push origin main
+```
+
+#### 6. **Verify Deployment**
+- Wait 1-2 minutes for GitHub Actions to deploy
+- Visit https://ozakinci.github.io/ScaleBuddy/
+- Verify the changes are live and working
+
 ### Local Testing
 - Open `index.html` directly in browser (no server needed)
+- **Always keep browser console open** (F12) to catch errors
 - Test dropdown selections
-- Check browser console for errors
 - Use DevTools to verify calculations
 
 ### Research Workflow
@@ -324,23 +418,139 @@ git push -u origin main
 
 **Step 4: Future Updates (Pull, Update, Push)**
 ```bash
-# Before making changes, pull latest from GitHub
+# BEFORE making changes, pull latest from GitHub
 git pull origin main
 
-# Make your changes to the files
+# Check for local changes
+git status
 
-# After making changes, add and commit
+# If clean, make your changes
+# If uncommitted changes exist, decide: commit, stash, or reset
+
+# After making changes, test thoroughly
+# Then add and commit
 git add .
 git commit -m "Description of changes"
 
 # Push to GitHub
-git push
+git push origin main
 ```
 
 **Step 5: GitHub Pages Deployment**
 - Go to repository on GitHub
-- Settings → Pages → Source: Deploy from branch → main
+- Settings → Pages → Source: GitHub Actions (recommended)
 - Your app will be at: https://YOUR_USERNAME.github.io/ScaleBuddy/
+
+### Commit Workflow (MANDATORY)
+
+**Before committing, ALWAYS:**
+
+1. **Run all tests** (see Testing Checklist above)
+2. **Check browser console** for any errors
+3. **Verify functionality** works end-to-end
+4. **Get confirmation** from user before committing (if working with a team)
+
+**Commit Message Format:**
+```
+<type>: <description>
+
+- Detail 1
+- Detail 2
+- What was fixed/added
+
+Examples:
+- feat: Add table display for scale notes and Roman numerals
+- fix: Resolve duplicate variable declaration error
+- docs: Update README with new display format
+- chore: Update development workflow instructions
+```
+
+**After Committing:**
+1. **Push to GitHub**: `git push origin main`
+2. **Wait for deployment** (1-2 minutes for GitHub Actions)
+3. **Verify live site**: Visit https://ozakinci.github.io/ScaleBuddy/
+4. **Confirm with user** that changes are correct
+
+**If Something Goes Wrong:**
+```bash
+# View recent commits
+git log --oneline -5
+
+# Revert last commit (if needed)
+git revert HEAD
+
+# View what changed
+git diff HEAD~1 HEAD
+```
+
+### Testing Checklist (Before Every Commit)
+
+**MUST COMPLETE ALL TESTS:**
+
+- [ ] **Scale Notes Display**: All notes show correctly in table
+- [ ] **Roman Numerals**: Proper alignment with notes
+- [ ] **Scale Triads**: All 7 degrees show correct triads
+- [ ] **Scale Chords**: All chords list correctly
+- [ ] **No Console Errors**: Browser console is clean
+- [ ] **All Scales Tested**: At least one from each category
+- [ ] **All Root Notes Tested**: At least 3-4 different roots
+- [ ] **Edge Cases**: Chromatic, diminished, pentatonic scales
+- [ ] **Accidentals**: Scales with ♭, ♯, ° symbols display correctly
+- [ ] **Responsive**: Works on mobile/tablet view
+
+**If ANY test fails, DO NOT COMMIT. Fix the issue first.**
+
+### Automated Testing (Future Enhancement)
+
+While this project currently uses manual testing, industry standard would include:
+
+**Option 1: Simple JavaScript Test Suite**
+```javascript
+// tests.js - Run in browser console
+function runTests() {
+  const tests = [
+    { name: 'C Major Scale', root: 'C', scale: 'major', expected: ['C', 'D', 'E', 'F', 'G', 'A', 'B'] },
+    { name: 'A Minor Scale', root: 'A', scale: 'minor', expected: ['A', 'B', 'C', 'D', 'E', 'F', 'G'] },
+    // Add more test cases
+  ];
+  
+  tests.forEach(test => {
+    const result = getScaleNotes(test.root, SCALES[test.scale]);
+    console.assert(
+      JSON.stringify(result) === JSON.stringify(test.expected),
+      `${test.name} failed: Expected ${test.expected}, got ${result}`
+    );
+  });
+}
+```
+
+**Option 2: Node.js Test Script**
+```javascript
+// test.js - Run with: node test.js
+const fs = require('fs');
+const jsdom = require('jsdom');
+
+// Load and test the HTML file
+// Test all scale combinations
+// Verify output matches expected values
+```
+
+**Option 3: GitHub Actions for Testing**
+```yaml
+# .github/workflows/test.yml
+name: Test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm install jsdom
+      - run: node test.js
+```
+
+**Recommendation**: For this project, manual testing is sufficient. For larger projects, implement automated testing.
 
 ---
 

@@ -62,11 +62,15 @@ Visit the live demo at:
 3. **View Results** - Three sections appear automatically:
 
 #### Scale Notes Section
-Shows all notes in the selected scale with technical names and scale degrees.
+Shows all notes in the selected scale with technical names and scale degrees in a table format for perfect alignment.
 
 **Example (C Major):**
 ```
-C (1) → D (2) → E (3) → F (4) → G (5) → A (6) → B (7)
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│  C  │  D  │  E  │  F  │  G  │  A  │  B  │  ← Notes (purple)
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│  I  │ ii  │ iii │  IV │  V  │ vi  │vii° │  ← Roman numerals (gray)
+└─────┴─────┴─────┴─────┴─────┴─────┴─────┘
 
 C Tonic
 D Supertonic
