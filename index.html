@@ -820,122 +820,177 @@
       const scaleName = SCALE_NAMES[scaleType];
       document.getElementById('chord-display').textContent = `${rootNote} ${scaleName}`;
       
-      // Render scale notes with technical names
-      const scaleDegreeNames = ['1', '2', '♭3', '3', '4', '5', '♭6', '6', '♭7', '7'];
-      const scaleNotesWithDegrees = scaleNotes.map((note, index) => {
-        // Get the degree name based on the scale type
-        let degreeName = '';
-        if (scaleType === 'major') {
-          const degrees = ['1', '2', '3', '4', '5', '6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
-          const degrees = ['1', '2', '♭3', '4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'dorian') {
-          const degrees = ['1', '2', '♭3', '4', '5', '6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'phrygian') {
-          const degrees = ['1', '♭2', '♭3', '4', '5', '♭6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'lydian') {
-          const degrees = ['1', '2', '3', '♯4', '5', '6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'mixolydian') {
-          const degrees = ['1', '2', '3', '4', '5', '6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'locrian') {
-          const degrees = ['1', '♭2', '♭3', '4', '♭5', '♭6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'majorPentatonic') {
-          const degrees = ['1', '2', '3', '5', '6'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'minorPentatonic') {
-          const degrees = ['1', '♭3', '4', '5', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'blues') {
-          const degrees = ['1', '♭3', '4', '♭5', '5', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'wholeTone') {
-          const degrees = ['1', '2', '3', '♯4', '♯5', '♯6'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'diminishedHW' || scaleType === 'diminishedWH') {
-          const degrees = ['1', '♭2', '♭3', '3', '♯4', '5', '6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'hungarianMinor') {
-          const degrees = ['1', '2', '♭3', '♯4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'doubleHarmonic') {
-          const degrees = ['1', '♭2', '3', '4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'phrygianDominant') {
-          const degrees = ['1', '♭2', '3', '4', '5', '♭6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'neapolitanMinor' || scaleType === 'neapolitanMajor') {
-          const degrees = ['1', '♭2', '♭3', '4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'enigmatic') {
-          const degrees = ['1', '♭2', '3', '♯4', '♯5', '♯6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'augmented') {
-          const degrees = ['1', '♭3', '3', '5', '♯5', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'prometheus') {
-          const degrees = ['1', '2', '3', '♯4', '6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'tritone') {
-          const degrees = ['1', '♭2', '3', '♭5', '5', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'balinese') {
-          const degrees = ['1', '♭2', '4', '5', '♭6'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'japanese') {
-          const degrees = ['1', '♭2', '4', '5', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'hirajoshi') {
-          const degrees = ['1', '3', '♯4', '5', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'iwato') {
-          const degrees = ['1', '♭2', '4', '♭5', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'yo') {
-          const degrees = ['1', '2', '4', '5', '6'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'chinese' || scaleType === 'mongolian') {
-          const degrees = ['1', '2', '3', '5', '6'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'persian') {
-          const degrees = ['1', '♭2', '3', '4', '♭5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'arabian') {
-          const degrees = ['1', '2', '♭3', '4', '♭5', '♭6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'byzantine') {
-          const degrees = ['1', '♭2', '3', '4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'hungarianGypsy') {
-          const degrees = ['1', '2', '♭3', '♯4', '5', '♭6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'oriental') {
-          const degrees = ['1', '♭2', '3', '4', '♭5', '6', '♭7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'majorBebop') {
-          const degrees = ['1', '2', '3', '4', '5', '♭6', '6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'minorBebop') {
-          const degrees = ['1', '2', '♭3', '4', '5', '♭6', '6', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'dominantBebop') {
-          const degrees = ['1', '2', '3', '4', '5', '6', '♭7', '7'];
-          degreeName = degrees[index];
-        } else if (scaleType === 'chromatic') {
-          const degrees = ['1', '♯1', '2', '♯2', '3', '4', '♯4', '5', '♯5', '6', '♯6', '7'];
-          degreeName = degrees[index];
+      // Get Roman numerals for each scale degree
+      function getRomanNumerals(scaleType, scaleLength) {
+        // Base Roman numerals for major scale (I, ii, iii, IV, V, vi, vii°)
+        const majorRoman = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
+        
+        // For minor scales, the pattern shifts
+        const minorRoman = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'];
+        
+        // For other scales, we'll use a generic pattern based on chord qualities
+        // This is a simplified approach - in reality, each scale has its own pattern
+        const romanNumerals = [];
+        
+        for (let i = 0; i < scaleLength; i++) {
+          let roman = '';
+          
+          if (scaleType === 'major') {
+            roman = majorRoman[i % 7];
+          } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
+            roman = minorRoman[i % 7];
+          } else if (scaleType === 'dorian') {
+            // Dorian: i, ii, III, iv, v, VI, VII
+            const dorianRoman = ['i', 'ii', 'III', 'iv', 'v', 'VI', 'VII'];
+            roman = dorianRoman[i % 7];
+          } else if (scaleType === 'phrygian') {
+            // Phrygian: i, ♭II, III, iv, v, ♭VI, ♭VII
+            const phrygianRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'];
+            roman = phrygianRoman[i % 7];
+          } else if (scaleType === 'lydian') {
+            // Lydian: I, II, III, ♯IV, V, vi, vii
+            const lydianRoman = ['I', 'II', 'III', '♯IV', 'V', 'vi', 'vii'];
+            roman = lydianRoman[i % 7];
+          } else if (scaleType === 'mixolydian') {
+            // Mixolydian: I, ii, iii, IV, v, vi, ♭VII
+            const mixolydianRoman = ['I', 'ii', 'iii', 'IV', 'v', 'vi', '♭VII'];
+            roman = mixolydianRoman[i % 7];
+          } else if (scaleType === 'locrian') {
+            // Locrian: i°, ♭II, ♭III, iv, ♭V, ♭VI, ♭VII
+            const locrianRoman = ['i°', '♭II', '♭III', 'iv', '♭V', '♭VI', '♭VII'];
+            roman = locrianRoman[i % 7];
+          } else if (scaleType === 'majorPentatonic') {
+            // Major Pentatonic: I, ii, iii, V, vi
+            const majorPentRoman = ['I', 'ii', 'iii', 'V', 'vi'];
+            roman = majorPentRoman[i % 5];
+          } else if (scaleType === 'minorPentatonic') {
+            // Minor Pentatonic: i, ♭III, iv, v, ♭VII
+            const minorPentRoman = ['i', '♭III', 'iv', 'v', '♭VII'];
+            roman = minorPentRoman[i % 5];
+          } else if (scaleType === 'blues') {
+            // Blues: i, ♭III, iv, ♭v, v, ♭VII
+            const bluesRoman = ['i', '♭III', 'iv', '♭v', 'v', '♭VII'];
+            roman = bluesRoman[i % 6];
+          } else if (scaleType === 'wholeTone') {
+            // Whole Tone: I, II, III, ♯IV, ♯V, ♯VI
+            const wholeToneRoman = ['I', 'II', 'III', '♯IV', '♯V', '♯VI'];
+            roman = wholeToneRoman[i % 6];
+          } else if (scaleType === 'diminishedHW' || scaleType === 'diminishedWH') {
+            // Diminished: i°, ♭II, ♭III, iii°, ♯IV, v, VI, ♭VII
+            const diminishedRoman = ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'];
+            roman = diminishedRoman[i % 8];
+          } else if (scaleType === 'hungarianMinor') {
+            // Hungarian Minor: i, ii°, ♭III, ♯iv, v, ♭VI, VII
+            const hungarianRoman = ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'];
+            roman = hungarianRoman[i % 7];
+          } else if (scaleType === 'doubleHarmonic') {
+            // Double Harmonic: i, ♭II, III, iv, v, ♭VI, VII
+            const doubleHarmonicRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'];
+            roman = doubleHarmonicRoman[i % 7];
+          } else if (scaleType === 'phrygianDominant') {
+            // Phrygian Dominant: i, ♭II, III, iv, v, ♭VI, ♭VII
+            const phrygDomRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'];
+            roman = phrygDomRoman[i % 7];
+          } else if (scaleType === 'neapolitanMinor' || scaleType === 'neapolitanMajor') {
+            // Neapolitan: i, ♭II, ♭III, iv, v, ♭VI, VII
+            const neapolitanRoman = ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'];
+            roman = neapolitanRoman[i % 7];
+          } else if (scaleType === 'enigmatic') {
+            // Enigmatic: i, ♭II, III, ♯IV, ♯V, ♯VI, VII
+            const enigmaticRoman = ['i', '♭II', 'III', '♯IV', '♯V', '♯VI', 'VII'];
+            roman = enigmaticRoman[i % 7];
+          } else if (scaleType === 'augmented') {
+            // Augmented: i, ♭III, III, v, ♯v, VII
+            const augmentedRoman = ['i', '♭III', 'III', 'v', '♯v', 'VII'];
+            roman = augmentedRoman[i % 6];
+          } else if (scaleType === 'prometheus') {
+            // Prometheus: I, II, III, ♯IV, VI, ♭VII
+            const prometheusRoman = ['I', 'II', 'III', '♯IV', 'VI', '♭VII'];
+            roman = prometheusRoman[i % 6];
+          } else if (scaleType === 'tritone') {
+            // Tritone: i, ♭II, III, ♭v, v, ♭VII
+            const tritoneRoman = ['i', '♭II', 'III', '♭v', 'v', '♭VII'];
+            roman = tritoneRoman[i % 6];
+          } else if (scaleType === 'balinese') {
+            // Balinese: i, ♭II, IV, v, ♭VI
+            const balineseRoman = ['i', '♭II', 'IV', 'v', '♭VI'];
+            roman = balineseRoman[i % 5];
+          } else if (scaleType === 'japanese') {
+            // Japanese: i, ♭II, IV, v, ♭VII
+            const japaneseRoman = ['i', '♭II', 'IV', 'v', '♭VII'];
+            roman = japaneseRoman[i % 5];
+          } else if (scaleType === 'hirajoshi') {
+            // Hirajoshi: i, III, ♯IV, v, VII
+            const hirajoshiRoman = ['i', 'III', '♯IV', 'v', 'VII'];
+            roman = hirajoshiRoman[i % 5];
+          } else if (scaleType === 'iwato') {
+            // Iwato: i, ♭II, IV, ♭v, ♭VII
+            const iwatoRoman = ['i', '♭II', 'IV', '♭v', '♭VII'];
+            roman = iwatoRoman[i % 5];
+          } else if (scaleType === 'yo') {
+            // Yo: I, II, IV, V, VI
+            const yoRoman = ['I', 'II', 'IV', 'V', 'VI'];
+            roman = yoRoman[i % 5];
+          } else if (scaleType === 'chinese' || scaleType === 'mongolian') {
+            // Chinese/Mongolian: I, II, III, V, VI
+            const chineseRoman = ['I', 'II', 'III', 'V', 'VI'];
+            roman = chineseRoman[i % 5];
+          } else if (scaleType === 'persian') {
+            // Persian: i, ♭II, III, iv, ♭v, ♭VI, VII
+            const persianRoman = ['i', '♭II', 'III', 'iv', '♭v', '♭VI', 'VII'];
+            roman = persianRoman[i % 7];
+          } else if (scaleType === 'arabian') {
+            // Arabian: i, ii°, ♭III, iv, ♭v, ♭VI, ♭VII
+            const arabianRoman = ['i', 'ii°', '♭III', 'iv', '♭v', '♭VI', '♭VII'];
+            roman = arabianRoman[i % 7];
+          } else if (scaleType === 'byzantine') {
+            // Byzantine: i, ♭II, III, iv, v, ♭VI, VII
+            const byzantineRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'];
+            roman = byzantineRoman[i % 7];
+          } else if (scaleType === 'hungarianGypsy') {
+            // Hungarian Gypsy: i, ii°, ♭III, ♯iv, v, ♭VI, VII
+            const hungarianGypsyRoman = ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'];
+            roman = hungarianGypsyRoman[i % 7];
+          } else if (scaleType === 'oriental') {
+            // Oriental: i, ♭II, III, iv, ♭v, VI, ♭VII
+            const orientalRoman = ['i', '♭II', 'III', 'iv', '♭v', 'VI', '♭VII'];
+            roman = orientalRoman[i % 7];
+          } else if (scaleType === 'majorBebop') {
+            // Major Bebop: I, ii, iii, IV, V, ♭VI, VI, VII
+            const majorBebopRoman = ['I', 'ii', 'iii', 'IV', 'V', '♭VI', 'VI', 'VII'];
+            roman = majorBebopRoman[i % 8];
+          } else if (scaleType === 'minorBebop') {
+            // Minor Bebop: i, ii°, ♭III, iv, v, ♭VI, VI, VII
+            const minorBebopRoman = ['i', 'ii°', '♭III', 'iv', 'v', '♭VI', 'VI', 'VII'];
+            roman = minorBebopRoman[i % 8];
+          } else if (scaleType === 'dominantBebop') {
+            // Dominant Bebop: I, ii, iii, IV, V, vi, ♭VII, VII
+            const dominantBebopRoman = ['I', 'ii', 'iii', 'IV', 'V', 'vi', '♭VII', 'VII'];
+            roman = dominantBebopRoman[i % 8];
+          } else if (scaleType === 'chromatic') {
+            // Chromatic: i, ♭II, II, ♭III, III, IV, ♯IV, V, ♯V, VI, ♯VI, VII
+            const chromaticRoman = ['i', '♭II', 'II', '♭III', 'III', 'IV', '♯IV', 'V', '♯V', 'VI', '♯VI', 'VII'];
+            roman = chromaticRoman[i % 12];
+          } else {
+            // Default: use scale degree numbers
+            roman = (i + 1).toString();
+          }
+          
+          romanNumerals.push(roman);
         }
         
-        return `${note} (${degreeName})`;
-      }).join(' → ');
+        return romanNumerals;
+      }
       
-      // Render chord functions for each scale degree
+      const romanNumerals = getRomanNumerals(scaleType, scaleNotes.length);
+      
+      // Line 1: Just the scale notes separated by dashes
+      const scaleNotesLine = scaleNotes.join(' - ');
+      
+      // Line 2: Roman numerals with proper case and symbols
+      const romanNumeralsLine = romanNumerals.join(' - ');
+      
+      // Render chord functions for each scale degree (for reference)
       const chordFunctions = scaleNotes.map((note, index) => {
         let functionText = '';
         if (scaleType === 'major') {
@@ -966,7 +1021,11 @@
         return `<span class="chord-name">${note}</span> <span class="chord-notes">${functionText}</span>`;
       }).join('\n');
       
-      document.getElementById('scale-result').innerHTML = scaleNotesWithDegrees + '<br><br>' + chordFunctions;
+      // Render: Line 1 (notes), Line 2 (Roman numerals), Line 3 (functions)
+      document.getElementById('scale-result').innerHTML = 
+        `<span class="chord-name">${scaleNotesLine}</span><br>` +
+        `<span class="chord-notes">${romanNumeralsLine}</span><br><br>` +
+        chordFunctions;
 
       // Render triads (compact format: I C - E - G (C Major), then empty line, then ii D - F - A (D Minor), etc.)
       const triadsHTML = triads.map(triad => {
