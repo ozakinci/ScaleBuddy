@@ -1021,11 +1021,55 @@
         return `<span class="chord-name">${note}</span> <span class="chord-notes">${functionText}</span>`;
       }).join('\n');
       
-      // Render: Line 1 (notes), Line 2 (Roman numerals), Line 3 (functions)
-      document.getElementById('scale-result').innerHTML = 
-        `<span class="chord-name" style="font-family: 'Courier New', monospace;">${scaleNotesLine}</span><br>` +
-        `<span class="chord-notes" style="font-family: 'Courier New', monospace;">${romanNumeralsLine}</span><br><br>` +
-        chordFunctions;
+      // Render: Table with notes and Roman numerals
+      let tableHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
+      tableHTML += '<tr>';
+      for (let i = 0; i < scaleNotes.length; i++) {
+        tableHTML += `<td style="border: 1px solid #e5e7eb; padding: 8px 12px; text-align: center; min-width: 50px;">`;
+        tableHTML += `<span class="chord-name" style="font-family: 'Courier New', monospace;">${scaleNotes[i]}</span>`;
+        tableHTML += `</td>`;
+      }
+      tableHTML += '</tr><tr>';
+      for (let i = 0; i < romanNumerals.length; i++) {
+        tableHTML += `<td style="border: 1px solid #e5e7eb; padding: 8px 12px; text-align: center; min-width: 50px;">`;
+        tableHTML += `<span class="chord-notes" style="font-family: 'Courier New', monospace;">${romanNumerals[i]}</span>`;
+        tableHTML += `</td>`;
+      }
+      tableHTML += '</tr></table>';
+      
+      // Render chord functions for each scale degree (for reference)
+      const chordFunctions = scaleNotes.map((note, index) => {
+        let functionText = '';
+        if (scaleType === 'major') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
+          functionText = functions[index];
+        } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
+          functionText = functions[index];
+        } else if (scaleType === 'dorian') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
+          functionText = functions[index];
+        } else if (scaleType === 'phrygian') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
+          functionText = functions[index];
+        } else if (scaleType === 'lydian') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
+          functionText = functions[index];
+        } else if (scaleType === 'mixolydian') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
+          functionText = functions[index];
+        } else if (scaleType === 'locrian') {
+          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
+          functionText = functions[index];
+        } else {
+          functionText = 'Scale Degree';
+        }
+        
+        return `<span class="chord-name">${note}</span> <span class="chord-notes">${functionText}</span>`;
+      }).join('\n');
+      
+      // Render: Table (notes + Roman numerals), then chord functions
+      document.getElementById('scale-result').innerHTML = tableHTML + chordFunctions;
 
       // Render triads (compact format: I C - E - G (C Major), then empty line, then ii D - F - A (D Minor), etc.)
       const triadsHTML = triads.map(triad => {
