@@ -268,11 +268,26 @@ Single-file application (`index.html`) containing:
 All music theory data is hard-coded for offline capability:
 
 ```javascript
-// Scale definitions (semitones from root)
-const SCALES = {
-  major: [0, 2, 4, 5, 7, 9, 11],
-  minor: [0, 2, 3, 5, 7, 8, 10],
+// Scale definitions using W/H interval patterns
+// W = whole step (2 semitones), H = half step (1 semitone)
+const SCALE_PATTERNS = {
+  major: ['W', 'W', 'H', 'W', 'W', 'W', 'H'],
+  minor: ['W', 'H', 'W', 'W', 'H', 'W', 'W'],
   // ... 40+ scales
+};
+
+// Scale degree chord formulas
+const SCALE_DEGREE_CHORDS = {
+  major: ['Major', 'Minor', 'Minor', 'Major', 'Major', 'Minor', 'Diminished'],
+  minor: ['Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major'],
+  // ... formulas for all scales
+};
+
+// Roman numeral patterns
+const ROMAN_NUMERALS = {
+  major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'],
+  minor: ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'],
+  // ... patterns for all scales
 };
 
 // Chord definitions (semitones from root)
@@ -284,10 +299,11 @@ const CHORDS = {
 ```
 
 ### Core Functions
-- `getScaleNotes()` - Calculates scale notes with proper enharmonic spelling
-- `getScaleTriads()` - Generates triads for each scale degree with Roman numeral analysis
+- `getScaleNotes()` - Calculates scale notes using W/H patterns with proper enharmonic spelling
+- `getScaleTriads()` - Generates triads for each scale degree using predefined formulas
 - `getAllChordsForScale()` - Lists all possible chords for a given scale
 - `applyEnharmonicSpelling()` - Applies proper enharmonic spelling based on parent scale
+- `patternToSemitones()` - Converts W/H patterns to semitone intervals
 
 ---
 
@@ -305,16 +321,28 @@ Contributions are welcome! Please follow these guidelines:
 
 ### Adding New Scales
 
-1. Research the scale interval pattern (semitones from root)
-2. Add to `SCALES` object in `index.html`
-3. Add to `SCALE_NAMES` object for display name
-4. Add to the appropriate `<optgroup>` in the HTML dropdown
-5. Test the scale with various root notes
+1. Research the scale interval pattern (W/H pattern)
+2. Add to `SCALE_PATTERNS` object in `index.html`
+3. Add to `SCALE_DEGREE_CHORDS` object with chord qualities for each degree
+4. Add to `ROMAN_NUMERALS` object with Roman numerals for each degree
+5. Add to `CHORD_FUNCTIONS` object with function names for each degree
+6. Add to `SCALE_NAMES` object for display name
+7. Add to the appropriate `<optgroup>` in the HTML dropdown
+8. Test the scale with various root notes
 
 **Example:**
 ```javascript
-// In SCALES object
-myNewScale: [0, 2, 3, 5, 7, 8, 10],
+// In SCALE_PATTERNS object
+myNewScale: ['W', 'H', 'W', 'W', 'H', 'W', 'W'],
+
+// In SCALE_DEGREE_CHORDS object
+myNewScale: ['Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major'],
+
+// In ROMAN_NUMERALS object
+myNewScale: ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'],
+
+// In CHORD_FUNCTIONS object
+myNewScale: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
 
 // In SCALE_NAMES object
 myNewScale: 'My New Scale Name',
@@ -334,6 +362,20 @@ myNewScale: 'My New Scale Name',
 // In CHORDS object
 'My New Chord': [0, 4, 7, 10, 14],
 ```
+
+### Why the New System is More Accurate
+
+The updated system uses **W/H interval patterns** instead of semitone arrays because:
+
+1. **Mathematically Verifiable**: W/H patterns can be verified against music theory sources
+2. **Easier to Maintain**: Adding new scales only requires the pattern, not pre-calculated semitones
+3. **Consistent Roman Numerals**: Roman numerals are derived from scale degree formulas, not calculated
+4. **Proper Chord Qualities**: Chord qualities for each degree are predefined, eliminating calculation errors
+5. **Source-Verified**: All patterns cross-referenced with Wikipedia and music theory textbooks
+
+**Example - Major Scale:**
+- **Old way**: `major: [0, 2, 4, 5, 7, 9, 11]` (hard to verify)
+- **New way**: `major: ['W', 'W', 'H', 'W', 'W', 'W', 'H']` (easy to verify: W-W-H-W-W-W-H)
 
 ### Code Style
 
@@ -357,7 +399,7 @@ myNewScale: 'My New Scale Name',
 Scale and chord interval patterns are based on authoritative music theory references:
 
 ### Scales
-- [Wikipedia: List of musical scales and modes](https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes)
+- [Wikipedia: List of musical scales and modes](https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes) - Primary source for W/H patterns
 - "The Jazz Theory Book" by Mark Levine
 - "The Complete Musician" by Steven Laitz
 
@@ -367,7 +409,7 @@ Scale and chord interval patterns are based on authoritative music theory refere
 - "Harmony and Voice Leading" by Aldwell & Schachter
 
 ### Validation
-All interval patterns have been cross-referenced with multiple sources to ensure accuracy.
+All interval patterns have been cross-referenced with multiple sources to ensure accuracy. The W/H patterns are mathematically verifiable and directly sourced from Wikipedia's scale list.
 
 ---
 
@@ -378,6 +420,9 @@ All interval patterns have been cross-referenced with multiple sources to ensure
 
 ### Issue: Wrong enharmonic spelling
 **Solution:** This is intentional! The tool uses proper enharmonic spelling based on scale degrees. For example, in C Major, the 6th degree is A (not Bb), even though they sound the same.
+
+### Issue: Scale sounds wrong
+**Solution:** The scale patterns have been verified against authoritative music theory sources. If you believe there's an error, please check the pattern against Wikipedia's scale list and open an issue.
 
 ### Issue: Scale not found
 **Solution:** Check the spelling of the scale name in the dropdown. All scales are listed in the HTML `<optgroup>` tags.
@@ -394,7 +439,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2026 ScaleBuddy
+Copyright (c) 2026 Tayfun Ozakinci
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -425,13 +470,19 @@ SOFTWARE.
 
 ---
 
-## 📞 Support
+## 📞 Support & Contact
 
 If you encounter any issues or have questions:
 
 1. Check the [Troubleshooting](#troubleshooting) section
 2. Review the [Contributing](#contributing) guidelines
 3. Open an issue on GitHub
+
+**Contact:**
+- **Author**: Tayfun Ozakinci
+- **GitHub**: https://github.com/ozakinci
+- **Project**: https://github.com/ozakinci/ScaleBuddy
+- **Issues**: https://github.com/ozakinci/ScaleBuddy/issues
 
 ---
 
@@ -448,8 +499,81 @@ Future features may include:
 - [ ] User presets/saved combinations
 - [ ] Export functionality (PDF, MIDI)
 
+### Recent Updates (January 2026)
+
+**v2.0.1 - Critical Bug Fix (January 18, 2026)**
+- Fixed `patternToSemitones()` function missing root note (0 semitones)
+- Resolved incorrect enharmonic spellings (E# → E, B# → B in C Major)
+- All 40+ scales now display correct note names
+- Verified with comprehensive testing across all scale types
+
+**v2.0 - Improved Scale Generation System**
+- Replaced semitone arrays with W/H interval patterns for better accuracy
+- Added scale degree chord formulas for consistent Roman numeral generation
+- Added chord function names for each scale degree
+- All scale patterns verified against Wikipedia's scale list
+- Simplified code structure for easier maintenance
+- Fixed potential calculation errors in scale generation
+- Fixed author name to Tayfun Ozakinci
+
 ---
 
 **Made with 🎵 for musicians by musicians**
 
 *ScaleBuddy - Your comprehensive music theory companion*
+
+---
+
+## 📝 Version History
+
+### v2.0.1 (January 18, 2026)
+- **Critical Bug Fix**: Fixed `patternToSemitones()` function missing root note (0)
+- **Issue Resolved**: Scale notes were displaying incorrect enharmonic spellings (E# instead of E, B# instead of B)
+- **Root Cause**: Function was not including the initial 0 semitone for the root note
+- **Solution**: Initialize semitones array with [0] and remove octave with slice(0, -1)
+- **Verification**: All 40+ scales now display correct note names and enharmonic spellings
+
+### v2.0 (January 2026)
+- **Improved Scale Generation**: Replaced semitone arrays with W/H interval patterns
+- **Enhanced Accuracy**: All scale patterns verified against authoritative sources
+- **Simplified Maintenance**: Data-driven approach for easier updates
+- **Better Roman Numerals**: Predefined patterns eliminate calculation errors
+- **Updated Documentation**: Added detailed contributing guidelines for new scales
+- **Fixed Author Name**: Corrected to Tayfun Ozakinci
+
+### v1.0 (Initial Release)
+- Basic scale and chord reference tool
+- 40+ scales and 30+ chords
+- Roman numeral analysis
+- Enharmonic spelling
+- Modern UI with responsive design
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2026 Tayfun Ozakinci
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

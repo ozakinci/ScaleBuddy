@@ -415,55 +415,55 @@
       'Bb': 'A#'
     };
 
-    // Comprehensive scale definitions (semitones from root)
-    const SCALES = {
+    // W/H interval patterns for scales (W = whole step = 2 semitones, H = half step = 1 semitone)
+    const SCALE_PATTERNS = {
       // Diatonic Scales
-      major: [0, 2, 4, 5, 7, 9, 11],
-      minor: [0, 2, 3, 5, 7, 8, 10],
-      harmonicMinor: [0, 2, 3, 5, 7, 8, 11],
-      melodicMinor: [0, 2, 3, 5, 7, 9, 11],
-      dorian: [0, 2, 3, 5, 7, 9, 10],
-      phrygian: [0, 1, 3, 5, 7, 8, 10],
-      lydian: [0, 2, 4, 6, 7, 9, 11],
-      mixolydian: [0, 2, 4, 5, 7, 9, 10],
-      locrian: [0, 1, 3, 5, 6, 8, 10],
+      major: ['W', 'W', 'H', 'W', 'W', 'W', 'H'],
+      minor: ['W', 'H', 'W', 'W', 'H', 'W', 'W'],
+      harmonicMinor: ['W', 'H', 'W', 'W', 'H', 'W', 'H'],
+      melodicMinor: ['W', 'H', 'W', 'W', 'W', 'W', 'H'],
+      dorian: ['W', 'H', 'W', 'W', 'W', 'H', 'W'],
+      phrygian: ['H', 'W', 'W', 'W', 'H', 'W', 'W'],
+      lydian: ['W', 'W', 'W', 'H', 'W', 'W', 'H'],
+      mixolydian: ['W', 'W', 'H', 'W', 'W', 'H', 'W'],
+      locrian: ['H', 'W', 'W', 'H', 'W', 'W', 'W'],
       
       // Pentatonic Scales
-      majorPentatonic: [0, 2, 4, 7, 9],
-      minorPentatonic: [0, 3, 5, 7, 10],
-      blues: [0, 3, 5, 6, 7, 10],
+      majorPentatonic: ['W', 'W', '3H', 'W', '3H'],
+      minorPentatonic: ['3H', 'W', 'W', '3H', 'W'],
+      blues: ['3H', 'W', 'H', 'H', '3H', 'W'],
       
       // Whole Tone & Diminished
-      wholeTone: [0, 2, 4, 6, 8, 10],
-      diminishedHW: [0, 1, 3, 4, 6, 7, 9, 10],
-      diminishedWH: [0, 2, 3, 5, 6, 8, 9, 11],
+      wholeTone: ['W', 'W', 'W', 'W', 'W', 'W'],
+      diminishedHW: ['H', 'W', 'H', 'W', 'H', 'W', 'H', 'W'],
+      diminishedWH: ['W', 'H', 'W', 'H', 'W', 'H', 'W', 'H'],
       
       // Exotic/World Scales
-      hungarianMinor: [0, 2, 3, 6, 7, 8, 11],
-      doubleHarmonic: [0, 1, 4, 5, 7, 8, 11],
-      phrygianDominant: [0, 1, 4, 5, 7, 8, 10],
-      neapolitanMinor: [0, 1, 3, 5, 7, 8, 11],
-      neapolitanMajor: [0, 1, 3, 5, 7, 9, 11],
-      enigmatic: [0, 1, 4, 6, 8, 10, 11],
-      augmented: [0, 3, 4, 7, 8, 11],
-      prometheus: [0, 2, 4, 6, 9, 10],
-      tritone: [0, 1, 4, 6, 7, 10],
-      balinese: [0, 1, 5, 7, 8],
-      japanese: [0, 1, 5, 7, 10],
-      hirajoshi: [0, 4, 6, 7, 11],
-      iwato: [0, 1, 5, 6, 10],
-      yo: [0, 2, 5, 7, 9],
-      chinese: [0, 2, 4, 7, 9],
-      mongolian: [0, 2, 4, 7, 9],
-      persian: [0, 1, 4, 5, 6, 8, 11],
-      arabian: [0, 2, 3, 5, 6, 8, 10],
-      byzantine: [0, 1, 4, 5, 7, 8, 11],
-      hungarianGypsy: [0, 2, 3, 6, 7, 8, 11],
-      oriental: [0, 1, 4, 5, 6, 9, 10],
-      majorBebop: [0, 2, 4, 5, 7, 8, 9, 11],
-      minorBebop: [0, 2, 3, 5, 7, 8, 9, 11],
-      dominantBebop: [0, 2, 4, 5, 7, 9, 10, 11],
-      chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      hungarianMinor: ['W', 'H', '3H', 'H', 'H', '3H', 'H'],
+      doubleHarmonic: ['H', '3H', 'H', 'W', 'H', '3H', 'H'],
+      phrygianDominant: ['H', '3H', 'H', 'W', 'H', 'W', 'W'],
+      neapolitanMinor: ['H', 'W', 'W', 'W', 'H', '3H', 'H'],
+      neapolitanMajor: ['H', 'W', 'W', 'W', 'W', 'W', 'H'],
+      enigmatic: ['H', '3H', 'W', 'W', 'W', 'H', 'H'],
+      augmented: ['3H', 'H', '3H', 'H', '3H', 'H'],
+      prometheus: ['W', 'W', 'W', '3H', 'H', 'W'],
+      tritone: ['H', '3H', 'W', 'H', '3H', 'W'],
+      balinese: ['H', '4H', 'W', 'H', '4H'],
+      japanese: ['H', '4H', 'W', '3H', 'W'],
+      hirajoshi: ['4H', 'W', 'H', '3H', 'H'],
+      iwato: ['H', '4H', 'H', '4H', 'W'],
+      yo: ['W', '3H', 'W', 'W', '3H'],
+      chinese: ['W', 'W', '3H', 'W', '3H'],
+      mongolian: ['W', 'W', '3H', 'W', '3H'],
+      persian: ['H', '3H', 'H', 'H', 'W', '3H', 'H'],
+      arabian: ['W', 'H', 'W', 'H', 'W', 'H', 'W'],
+      byzantine: ['H', '3H', 'H', 'W', 'H', '3H', 'H'],
+      hungarianGypsy: ['W', 'H', '3H', 'H', 'H', '3H', 'H'],
+      oriental: ['H', '3H', 'H', 'H', 'W', '3H', 'W'],
+      majorBebop: ['W', 'W', 'H', 'W', 'H', 'H', 'W', 'H'],
+      minorBebop: ['W', 'H', 'W', 'W', 'H', 'H', 'W', 'H'],
+      dominantBebop: ['W', 'W', 'H', 'W', 'W', 'H', 'H', 'W'],
+      chromatic: ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']
     };
 
     // Scale names for display
@@ -508,6 +508,139 @@
       minorBebop: 'Minor Bebop',
       dominantBebop: 'Dominant Bebop',
       chromatic: 'Chromatic'
+    };
+
+    // Scale degree chord formulas (for each scale type)
+    // These define the chord quality for each degree of the scale
+    const SCALE_DEGREE_CHORDS = {
+      major: ['Major', 'Minor', 'Minor', 'Major', 'Major', 'Minor', 'Diminished'],
+      minor: ['Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major'],
+      harmonicMinor: ['Minor', 'Diminished', 'Augmented', 'Minor', 'Major', 'Major', 'Diminished'],
+      melodicMinor: ['Minor', 'Minor', 'Augmented', 'Major', 'Major', 'Diminished', 'Diminished'],
+      dorian: ['Minor', 'Minor', 'Major', 'Major', 'Minor', 'Diminished', 'Major'],
+      phrygian: ['Minor', 'Major', 'Major', 'Minor', 'Diminished', 'Major', 'Minor'],
+      lydian: ['Major', 'Major', 'Minor', 'Diminished', 'Major', 'Minor', 'Minor'],
+      mixolydian: ['Major', 'Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major'],
+      locrian: ['Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major', 'Minor'],
+      majorPentatonic: ['Major', 'Minor', 'Minor', 'Major', 'Minor'],
+      minorPentatonic: ['Minor', 'Major', 'Minor', 'Minor', 'Major'],
+      blues: ['Minor', 'Major', 'Minor', 'Diminished', 'Minor', 'Major'],
+      wholeTone: ['Augmented', 'Augmented', 'Augmented', 'Augmented', 'Augmented', 'Augmented'],
+      diminishedHW: ['Diminished', 'Major', 'Minor', 'Diminished', 'Major', 'Minor', 'Diminished', 'Major'],
+      diminishedWH: ['Diminished', 'Minor', 'Major', 'Diminished', 'Minor', 'Major', 'Diminished', 'Minor'],
+      hungarianMinor: ['Minor', 'Diminished', 'Augmented', 'Minor', 'Major', 'Major', 'Diminished'],
+      doubleHarmonic: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      phrygianDominant: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      neapolitanMinor: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      neapolitanMajor: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      enigmatic: ['Minor', 'Major', 'Augmented', 'Diminished', 'Minor', 'Major', 'Major'],
+      augmented: ['Minor', 'Augmented', 'Minor', 'Augmented', 'Minor', 'Augmented'],
+      prometheus: ['Major', 'Major', 'Minor', 'Diminished', 'Minor', 'Major'],
+      tritone: ['Minor', 'Major', 'Minor', 'Diminished', 'Minor', 'Major'],
+      balinese: ['Minor', 'Major', 'Minor', 'Minor', 'Major'],
+      japanese: ['Minor', 'Major', 'Minor', 'Minor', 'Major'],
+      hirajoshi: ['Minor', 'Major', 'Diminished', 'Minor', 'Major'],
+      iwato: ['Minor', 'Major', 'Minor', 'Minor', 'Major'],
+      yo: ['Major', 'Minor', 'Major', 'Major', 'Minor'],
+      chinese: ['Major', 'Minor', 'Major', 'Major', 'Minor'],
+      mongolian: ['Major', 'Minor', 'Major', 'Major', 'Minor'],
+      persian: ['Minor', 'Major', 'Minor', 'Diminished', 'Minor', 'Major', 'Major'],
+      arabian: ['Minor', 'Diminished', 'Major', 'Minor', 'Diminished', 'Major', 'Major'],
+      byzantine: ['Minor', 'Major', 'Minor', 'Minor', 'Major', 'Diminished', 'Major'],
+      hungarianGypsy: ['Minor', 'Diminished', 'Augmented', 'Minor', 'Major', 'Major', 'Diminished'],
+      oriental: ['Minor', 'Major', 'Minor', 'Diminished', 'Minor', 'Major', 'Major'],
+      majorBebop: ['Major', 'Minor', 'Minor', 'Major', 'Major', 'Minor', 'Diminished', 'Major'],
+      minorBebop: ['Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major', 'Diminished'],
+      dominantBebop: ['Major', 'Minor', 'Diminished', 'Major', 'Minor', 'Minor', 'Major', 'Major'],
+      chromatic: ['Minor', 'Major', 'Minor', 'Major', 'Minor', 'Major', 'Minor', 'Major', 'Minor', 'Major', 'Minor', 'Major']
+    };
+
+    // Roman numeral patterns for each scale type
+    const ROMAN_NUMERALS = {
+      major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'],
+      minor: ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'],
+      harmonicMinor: ['i', 'ii°', 'III+', 'iv', 'V', 'VI', 'vii°'],
+      melodicMinor: ['i', 'ii', 'III+', 'IV', 'V', 'vi°', 'vii°'],
+      dorian: ['i', 'ii', 'III', 'IV', 'v', 'vi°', 'VII'],
+      phrygian: ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'],
+      lydian: ['I', 'II', 'III', '♯IV', 'V', 'vi', 'vii'],
+      mixolydian: ['I', 'ii', 'iii', 'IV', 'v', 'vi', '♭VII'],
+      locrian: ['i°', '♭II', '♭III', 'iv', '♭V', '♭VI', '♭VII'],
+      majorPentatonic: ['I', 'ii', 'iii', 'V', 'vi'],
+      minorPentatonic: ['i', '♭III', 'iv', 'v', '♭VII'],
+      blues: ['i', '♭III', 'iv', '♭v', 'v', '♭VII'],
+      wholeTone: ['I', 'II', 'III', '♯IV', '♯V', '♯VI'],
+      diminishedHW: ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'],
+      diminishedWH: ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'],
+      hungarianMinor: ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'],
+      doubleHarmonic: ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'],
+      phrygianDominant: ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'],
+      neapolitanMinor: ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'],
+      neapolitanMajor: ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'],
+      enigmatic: ['i', '♭II', 'III', '♯IV', '♯V', '♯VI', 'VII'],
+      augmented: ['i', '♭III', 'III', 'v', '♯v', 'VII'],
+      prometheus: ['I', 'II', 'III', '♯IV', 'VI', '♭VII'],
+      tritone: ['i', '♭II', 'III', '♭v', 'v', '♭VII'],
+      balinese: ['i', '♭II', 'IV', 'v', '♭VI'],
+      japanese: ['i', '♭II', 'IV', 'v', '♭VII'],
+      hirajoshi: ['i', 'III', '♯IV', 'v', 'VII'],
+      iwato: ['i', '♭II', 'IV', '♭v', '♭VII'],
+      yo: ['I', 'II', 'IV', 'V', 'VI'],
+      chinese: ['I', 'II', 'III', 'V', 'VI'],
+      mongolian: ['I', 'II', 'III', 'V', 'VI'],
+      persian: ['i', '♭II', 'III', 'iv', '♭v', '♭VI', 'VII'],
+      arabian: ['i', 'ii°', '♭III', 'iv', '♭v', '♭VI', '♭VII'],
+      byzantine: ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'],
+      hungarianGypsy: ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'],
+      oriental: ['i', '♭II', 'III', 'iv', '♭v', 'VI', '♭VII'],
+      majorBebop: ['I', 'ii', 'iii', 'IV', 'V', '♭VI', 'VI', 'VII'],
+      minorBebop: ['i', 'ii°', '♭III', 'iv', 'v', '♭VI', 'VI', 'VII'],
+      dominantBebop: ['I', 'ii', 'iii', 'IV', 'V', 'vi', '♭VII', 'VII'],
+      chromatic: ['i', '♭II', 'II', '♭III', 'III', 'IV', '♯IV', 'V', '♯V', 'VI', '♯VI', 'VII']
+    };
+
+    // Chord function names for each scale type
+    const CHORD_FUNCTIONS = {
+      major: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      minor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      harmonicMinor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      melodicMinor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      dorian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      phrygian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      lydian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      mixolydian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      locrian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      majorPentatonic: ['Tonic', 'Supertonic', 'Mediant', 'Dominant', 'Submediant'],
+      minorPentatonic: ['Tonic', 'Mediant', 'Subdominant', 'Dominant', 'Subtonic'],
+      blues: ['Tonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      wholeTone: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant'],
+      diminishedHW: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic', 'Leading Tone'],
+      diminishedWH: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic', 'Leading Tone'],
+      hungarianMinor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      doubleHarmonic: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      phrygianDominant: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      neapolitanMinor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      neapolitanMajor: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      enigmatic: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      augmented: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant'],
+      prometheus: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Submediant', 'Subtonic'],
+      tritone: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Subtonic'],
+      balinese: ['Tonic', 'Supertonic', 'Subdominant', 'Dominant', 'Submediant'],
+      japanese: ['Tonic', 'Supertonic', 'Subdominant', 'Dominant', 'Subtonic'],
+      hirajoshi: ['Tonic', 'Mediant', 'Subdominant', 'Dominant', 'Leading Tone'],
+      iwato: ['Tonic', 'Supertonic', 'Subdominant', 'Dominant', 'Subtonic'],
+      yo: ['Tonic', 'Supertonic', 'Subdominant', 'Dominant', 'Submediant'],
+      chinese: ['Tonic', 'Supertonic', 'Mediant', 'Dominant', 'Submediant'],
+      mongolian: ['Tonic', 'Supertonic', 'Mediant', 'Dominant', 'Submediant'],
+      persian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      arabian: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      byzantine: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      hungarianGypsy: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'],
+      oriental: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'],
+      majorBebop: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'],
+      minorBebop: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'],
+      dominantBebop: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic', 'Leading Tone'],
+      chromatic: ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic', 'Chromatic', 'Chromatic', 'Chromatic', 'Chromatic']
     };
 
     // Essential chord definitions (semitones from root)
@@ -587,19 +720,49 @@
       return -1;
     }
 
-    function getScaleNotes(rootNote, scaleIntervals) {
-      // Get the root note index in SCALE_DEGREES
-      const rootDegreeIndex = SCALE_DEGREES.indexOf(rootNote.replace(/#|b/g, ''));
+    // Convert W/H pattern to semitone intervals
+    function patternToSemitones(pattern) {
+      const semitones = [0]; // Start with root note at 0 semitones
+      let current = 0;
+      
+      for (const step of pattern) {
+        if (step === 'H') {
+          current += 1;
+        } else if (step === 'W') {
+          current += 2;
+        } else if (step === '3H') {
+          current += 3;
+        } else if (step === '4H') {
+          current += 4;
+        } else if (step === '5H') {
+          current += 5;
+        }
+        semitones.push(current);
+      }
+      
+      // Remove the last element (octave) and return scale degrees
+      return semitones.slice(0, -1);
+    }
+
+    // Get scale notes with proper enharmonic spelling
+    function getScaleNotes(rootNote, scaleType) {
+      const pattern = SCALE_PATTERNS[scaleType];
+      if (!pattern) return [];
+      
+      const semitones = patternToSemitones(pattern);
       const rootIndex = getNoteIndex(rootNote);
+      
+      // Get the base note name (without accidental)
+      const baseNote = rootNote.replace(/#|b/g, '');
+      const baseIndex = SCALE_DEGREES.indexOf(baseNote);
       
       const scaleNotes = [];
       
-      for (let i = 0; i < scaleIntervals.length; i++) {
-        const interval = scaleIntervals[i];
-        const targetSemitone = (rootIndex + interval) % 12;
+      for (let i = 0; i < semitones.length; i++) {
+        const targetSemitone = (rootIndex + semitones[i]) % 12;
         
         // Get the scale degree name (C, D, E, F, G, A, B)
-        const degreeName = SCALE_DEGREES[(rootDegreeIndex + i) % 7];
+        const degreeName = SCALE_DEGREES[(baseIndex + i) % 7];
         
         // Find the natural note position
         const degreeNaturalIndex = NOTES.indexOf(degreeName);
@@ -678,8 +841,8 @@
       });
     }
 
-    function getAllChordsForScale(rootNote, scaleIntervals) {
-      const parentScale = getScaleNotes(rootNote, scaleIntervals);
+    function getAllChordsForScale(rootNote, scaleType) {
+      const parentScale = getScaleNotes(rootNote, scaleType);
       const chords = [];
       
       for (const [chordName, chordIntervals] of Object.entries(CHORDS)) {
@@ -697,18 +860,18 @@
     }
 
     // Get triads for each scale degree with Roman numeral analysis
-    function getScaleTriads(rootNote, scaleIntervals) {
-      const scaleNotes = getScaleNotes(rootNote, scaleIntervals);
+    function getScaleTriads(rootNote, scaleType) {
+      const scaleNotes = getScaleNotes(rootNote, scaleType);
       const triads = [];
       
-      // Roman numerals for each degree (I, ii, iii, IV, V, vi, vii° for major)
-      const romanNumerals = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
+      // Get the chord qualities for each degree
+      const chordQualities = SCALE_DEGREE_CHORDS[scaleType] || [];
+      const romanNumerals = ROMAN_NUMERALS[scaleType] || [];
       
       for (let i = 0; i < scaleNotes.length; i++) {
         const degreeRoot = scaleNotes[i];
         
-        // Build triad (root, 3rd, 5th) using scale intervals
-        // For a triad, we need the root, the note 2 scale degrees up (3rd), and 4 scale degrees up (5th)
+        // Build triad (root, 3rd, 5th) using scale notes
         const thirdDegree = (i + 2) % scaleNotes.length;
         const fifthDegree = (i + 4) % scaleNotes.length;
         
@@ -718,57 +881,23 @@
           scaleNotes[fifthDegree]
         ];
         
-        // Determine chord quality (major, minor, diminished, augmented)
-        const triadQuality = getTriadQuality(scaleNotes, i, scaleIntervals);
+        // Get chord quality from formula
+        const chordQuality = chordQualities[i] || 'Unknown';
         
-        // Get Roman numeral (uppercase for major, lowercase for minor, add ° for diminished, + for augmented)
-        let romanNumeral = romanNumerals[i % 7];
-        if (triadQuality === 'minor') {
-          romanNumeral = romanNumeral.toLowerCase();
-        } else if (triadQuality === 'diminished') {
-          romanNumeral = romanNumeral.toLowerCase() + '°';
-        } else if (triadQuality === 'augmented') {
-          romanNumeral = romanNumeral + '+';
-        }
-        
-        // Get chord name based on quality
-        let chordName = '';
-        if (triadQuality === 'major') chordName = 'Major';
-        else if (triadQuality === 'minor') chordName = 'Minor';
-        else if (triadQuality === 'diminished') chordName = 'Diminished';
-        else if (triadQuality === 'augmented') chordName = 'Augmented';
+        // Get Roman numeral
+        const romanNumeral = romanNumerals[i] || (i + 1).toString();
         
         triads.push({
           degree: i + 1,
           romanNumeral: romanNumeral,
           notes: triadNotes,
-          quality: triadQuality,
-          chordName: chordName,
+          quality: chordQuality,
+          chordName: chordQuality,
           rootNote: degreeRoot
         });
       }
       
       return triads;
-    }
-
-    // Determine triad quality based on intervals
-    function getTriadQuality(scaleNotes, degreeIndex, scaleIntervals) {
-      // Get the intervals from the root note
-      const rootSemitone = scaleIntervals[degreeIndex];
-      const thirdSemitone = scaleIntervals[(degreeIndex + 2) % 7];
-      const fifthSemitone = scaleIntervals[(degreeIndex + 4) % 7];
-      
-      // Calculate intervals between notes (wrapping around 12)
-      const thirdInterval = (thirdSemitone - rootSemitone + 12) % 12;
-      const fifthInterval = (fifthSemitone - rootSemitone + 12) % 12;
-      
-      // Determine quality
-      if (thirdInterval === 4 && fifthInterval === 7) return 'major';
-      if (thirdInterval === 3 && fifthInterval === 7) return 'minor';
-      if (thirdInterval === 3 && fifthInterval === 6) return 'diminished';
-      if (thirdInterval === 4 && fifthInterval === 8) return 'augmented';
-      
-      return 'unknown';
     }
 
     // ============================================
@@ -818,234 +947,33 @@
       document.getElementById('scale-type').style.borderColor = '';
       document.getElementById('scale-type').style.background = '';
 
-      // Get scale data
-      const scaleIntervals = SCALES[scaleType];
-      if (!scaleIntervals) {
+      // Validate scale type
+      if (!SCALE_PATTERNS[scaleType]) {
         errorDiv.textContent = 'Invalid scale type selected.';
         errorDiv.classList.add('show');
         return;
       }
 
       // Calculate scale notes
-      const scaleNotes = getScaleNotes(rootNote, scaleIntervals);
+      const scaleNotes = getScaleNotes(rootNote, scaleType);
       
       // Calculate triads for each scale degree
-      const triads = getScaleTriads(rootNote, scaleIntervals);
+      const triads = getScaleTriads(rootNote, scaleType);
       
       // Calculate all chords for this scale
-      const chords = getAllChordsForScale(rootNote, scaleIntervals);
+      const chords = getAllChordsForScale(rootNote, scaleType);
 
       // Render results
       const scaleName = SCALE_NAMES[scaleType];
       document.getElementById('chord-display').textContent = `${rootNote} ${scaleName}`;
       
-      // Get Roman numerals for each scale degree
-      function getRomanNumerals(scaleType, scaleLength) {
-        // Base Roman numerals for major scale (I, ii, iii, IV, V, vi, vii°)
-        const majorRoman = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
-        
-        // For minor scales, the pattern shifts
-        const minorRoman = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'];
-        
-        // For other scales, we'll use a generic pattern based on chord qualities
-        // This is a simplified approach - in reality, each scale has its own pattern
-        const romanNumerals = [];
-        
-        for (let i = 0; i < scaleLength; i++) {
-          let roman = '';
-          
-          if (scaleType === 'major') {
-            roman = majorRoman[i % 7];
-          } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
-            roman = minorRoman[i % 7];
-          } else if (scaleType === 'dorian') {
-            // Dorian: i, ii, III, iv, v, VI, VII
-            const dorianRoman = ['i', 'ii', 'III', 'iv', 'v', 'VI', 'VII'];
-            roman = dorianRoman[i % 7];
-          } else if (scaleType === 'phrygian') {
-            // Phrygian: i, ♭II, III, iv, v, ♭VI, ♭VII
-            const phrygianRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'];
-            roman = phrygianRoman[i % 7];
-          } else if (scaleType === 'lydian') {
-            // Lydian: I, II, III, ♯IV, V, vi, vii
-            const lydianRoman = ['I', 'II', 'III', '♯IV', 'V', 'vi', 'vii'];
-            roman = lydianRoman[i % 7];
-          } else if (scaleType === 'mixolydian') {
-            // Mixolydian: I, ii, iii, IV, v, vi, ♭VII
-            const mixolydianRoman = ['I', 'ii', 'iii', 'IV', 'v', 'vi', '♭VII'];
-            roman = mixolydianRoman[i % 7];
-          } else if (scaleType === 'locrian') {
-            // Locrian: i°, ♭II, ♭III, iv, ♭V, ♭VI, ♭VII
-            const locrianRoman = ['i°', '♭II', '♭III', 'iv', '♭V', '♭VI', '♭VII'];
-            roman = locrianRoman[i % 7];
-          } else if (scaleType === 'majorPentatonic') {
-            // Major Pentatonic: I, ii, iii, V, vi
-            const majorPentRoman = ['I', 'ii', 'iii', 'V', 'vi'];
-            roman = majorPentRoman[i % 5];
-          } else if (scaleType === 'minorPentatonic') {
-            // Minor Pentatonic: i, ♭III, iv, v, ♭VII
-            const minorPentRoman = ['i', '♭III', 'iv', 'v', '♭VII'];
-            roman = minorPentRoman[i % 5];
-          } else if (scaleType === 'blues') {
-            // Blues: i, ♭III, iv, ♭v, v, ♭VII
-            const bluesRoman = ['i', '♭III', 'iv', '♭v', 'v', '♭VII'];
-            roman = bluesRoman[i % 6];
-          } else if (scaleType === 'wholeTone') {
-            // Whole Tone: I, II, III, ♯IV, ♯V, ♯VI
-            const wholeToneRoman = ['I', 'II', 'III', '♯IV', '♯V', '♯VI'];
-            roman = wholeToneRoman[i % 6];
-          } else if (scaleType === 'diminishedHW' || scaleType === 'diminishedWH') {
-            // Diminished: i°, ♭II, ♭III, iii°, ♯IV, v, VI, ♭VII
-            const diminishedRoman = ['i°', '♭II', '♭III', 'iii°', '♯IV', 'v', 'VI', '♭VII'];
-            roman = diminishedRoman[i % 8];
-          } else if (scaleType === 'hungarianMinor') {
-            // Hungarian Minor: i, ii°, ♭III, ♯iv, v, ♭VI, VII
-            const hungarianRoman = ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'];
-            roman = hungarianRoman[i % 7];
-          } else if (scaleType === 'doubleHarmonic') {
-            // Double Harmonic: i, ♭II, III, iv, v, ♭VI, VII
-            const doubleHarmonicRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'];
-            roman = doubleHarmonicRoman[i % 7];
-          } else if (scaleType === 'phrygianDominant') {
-            // Phrygian Dominant: i, ♭II, III, iv, v, ♭VI, ♭VII
-            const phrygDomRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', '♭VII'];
-            roman = phrygDomRoman[i % 7];
-          } else if (scaleType === 'neapolitanMinor' || scaleType === 'neapolitanMajor') {
-            // Neapolitan: i, ♭II, ♭III, iv, v, ♭VI, VII
-            const neapolitanRoman = ['i', '♭II', '♭III', 'iv', 'v', '♭VI', 'VII'];
-            roman = neapolitanRoman[i % 7];
-          } else if (scaleType === 'enigmatic') {
-            // Enigmatic: i, ♭II, III, ♯IV, ♯V, ♯VI, VII
-            const enigmaticRoman = ['i', '♭II', 'III', '♯IV', '♯V', '♯VI', 'VII'];
-            roman = enigmaticRoman[i % 7];
-          } else if (scaleType === 'augmented') {
-            // Augmented: i, ♭III, III, v, ♯v, VII
-            const augmentedRoman = ['i', '♭III', 'III', 'v', '♯v', 'VII'];
-            roman = augmentedRoman[i % 6];
-          } else if (scaleType === 'prometheus') {
-            // Prometheus: I, II, III, ♯IV, VI, ♭VII
-            const prometheusRoman = ['I', 'II', 'III', '♯IV', 'VI', '♭VII'];
-            roman = prometheusRoman[i % 6];
-          } else if (scaleType === 'tritone') {
-            // Tritone: i, ♭II, III, ♭v, v, ♭VII
-            const tritoneRoman = ['i', '♭II', 'III', '♭v', 'v', '♭VII'];
-            roman = tritoneRoman[i % 6];
-          } else if (scaleType === 'balinese') {
-            // Balinese: i, ♭II, IV, v, ♭VI
-            const balineseRoman = ['i', '♭II', 'IV', 'v', '♭VI'];
-            roman = balineseRoman[i % 5];
-          } else if (scaleType === 'japanese') {
-            // Japanese: i, ♭II, IV, v, ♭VII
-            const japaneseRoman = ['i', '♭II', 'IV', 'v', '♭VII'];
-            roman = japaneseRoman[i % 5];
-          } else if (scaleType === 'hirajoshi') {
-            // Hirajoshi: i, III, ♯IV, v, VII
-            const hirajoshiRoman = ['i', 'III', '♯IV', 'v', 'VII'];
-            roman = hirajoshiRoman[i % 5];
-          } else if (scaleType === 'iwato') {
-            // Iwato: i, ♭II, IV, ♭v, ♭VII
-            const iwatoRoman = ['i', '♭II', 'IV', '♭v', '♭VII'];
-            roman = iwatoRoman[i % 5];
-          } else if (scaleType === 'yo') {
-            // Yo: I, II, IV, V, VI
-            const yoRoman = ['I', 'II', 'IV', 'V', 'VI'];
-            roman = yoRoman[i % 5];
-          } else if (scaleType === 'chinese' || scaleType === 'mongolian') {
-            // Chinese/Mongolian: I, II, III, V, VI
-            const chineseRoman = ['I', 'II', 'III', 'V', 'VI'];
-            roman = chineseRoman[i % 5];
-          } else if (scaleType === 'persian') {
-            // Persian: i, ♭II, III, iv, ♭v, ♭VI, VII
-            const persianRoman = ['i', '♭II', 'III', 'iv', '♭v', '♭VI', 'VII'];
-            roman = persianRoman[i % 7];
-          } else if (scaleType === 'arabian') {
-            // Arabian: i, ii°, ♭III, iv, ♭v, ♭VI, ♭VII
-            const arabianRoman = ['i', 'ii°', '♭III', 'iv', '♭v', '♭VI', '♭VII'];
-            roman = arabianRoman[i % 7];
-          } else if (scaleType === 'byzantine') {
-            // Byzantine: i, ♭II, III, iv, v, ♭VI, VII
-            const byzantineRoman = ['i', '♭II', 'III', 'iv', 'v', '♭VI', 'VII'];
-            roman = byzantineRoman[i % 7];
-          } else if (scaleType === 'hungarianGypsy') {
-            // Hungarian Gypsy: i, ii°, ♭III, ♯iv, v, ♭VI, VII
-            const hungarianGypsyRoman = ['i', 'ii°', '♭III', '♯iv', 'v', '♭VI', 'VII'];
-            roman = hungarianGypsyRoman[i % 7];
-          } else if (scaleType === 'oriental') {
-            // Oriental: i, ♭II, III, iv, ♭v, VI, ♭VII
-            const orientalRoman = ['i', '♭II', 'III', 'iv', '♭v', 'VI', '♭VII'];
-            roman = orientalRoman[i % 7];
-          } else if (scaleType === 'majorBebop') {
-            // Major Bebop: I, ii, iii, IV, V, ♭VI, VI, VII
-            const majorBebopRoman = ['I', 'ii', 'iii', 'IV', 'V', '♭VI', 'VI', 'VII'];
-            roman = majorBebopRoman[i % 8];
-          } else if (scaleType === 'minorBebop') {
-            // Minor Bebop: i, ii°, ♭III, iv, v, ♭VI, VI, VII
-            const minorBebopRoman = ['i', 'ii°', '♭III', 'iv', 'v', '♭VI', 'VI', 'VII'];
-            roman = minorBebopRoman[i % 8];
-          } else if (scaleType === 'dominantBebop') {
-            // Dominant Bebop: I, ii, iii, IV, V, vi, ♭VII, VII
-            const dominantBebopRoman = ['I', 'ii', 'iii', 'IV', 'V', 'vi', '♭VII', 'VII'];
-            roman = dominantBebopRoman[i % 8];
-          } else if (scaleType === 'chromatic') {
-            // Chromatic: i, ♭II, II, ♭III, III, IV, ♯IV, V, ♯V, VI, ♯VI, VII
-            const chromaticRoman = ['i', '♭II', 'II', '♭III', 'III', 'IV', '♯IV', 'V', '♯V', 'VI', '♯VI', 'VII'];
-            roman = chromaticRoman[i % 12];
-          } else {
-            // Default: use scale degree numbers
-            roman = (i + 1).toString();
-          }
-          
-          romanNumerals.push(roman);
-        }
-        
-        return romanNumerals;
-      }
-      
-      const romanNumerals = getRomanNumerals(scaleType, scaleNotes.length);
-      
-      // Line 1: Just the scale notes separated by dashes
-      const scaleNotesLine = scaleNotes.join(' - ');
-      
-      // Line 2: Roman numerals with proper case and symbols
-      const romanNumeralsLine = romanNumerals.join(' - ');
+      // Get Roman numerals and chord functions from our new data structures
+      const romanNumerals = ROMAN_NUMERALS[scaleType] || [];
+      const chordFunctions = CHORD_FUNCTIONS[scaleType] || [];
       
       // Render chord functions for each scale degree (for reference)
-      const chordFunctions = scaleNotes.map((note, index) => {
-        let functionText = '';
-        if (scaleType === 'major') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'dorian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'phrygian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'lydian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'mixolydian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'locrian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'majorBebop') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'];
-          functionText = functions[index];
-        } else if (scaleType === 'minorBebop') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone', 'Chromatic'];
-          functionText = functions[index];
-        } else if (scaleType === 'dominantBebop') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic', 'Leading Tone'];
-          functionText = functions[index];
-        } else {
-          functionText = 'Scale Degree';
-        }
-        
+      const chordFunctionsHTML = scaleNotes.map((note, index) => {
+        const functionText = chordFunctions[index] || 'Scale Degree';
         return `<span class="chord-name">${note}</span> <span class="chord-notes">${functionText}</span>`;
       }).join('\n');
       
@@ -1066,7 +994,7 @@
       tableHTML += '</tr></table>';
       
       // Render: Table (notes + Roman numerals), then chord functions
-      document.getElementById('scale-result').innerHTML = tableHTML + chordFunctions;
+      document.getElementById('scale-result').innerHTML = tableHTML + chordFunctionsHTML;
 
       // Render triads (compact format: I C - E - G (C Major), then empty line, then ii D - F - A (D Minor), etc.)
       const triadsHTML = triads.map(triad => {
