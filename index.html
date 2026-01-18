@@ -1037,37 +1037,6 @@
       }
       tableHTML += '</tr></table>';
       
-      // Render chord functions for each scale degree (for reference)
-      const chordFunctions = scaleNotes.map((note, index) => {
-        let functionText = '';
-        if (scaleType === 'major') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'minor' || scaleType === 'harmonicMinor' || scaleType === 'melodicMinor') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'dorian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'phrygian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'lydian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Leading Tone'];
-          functionText = functions[index];
-        } else if (scaleType === 'mixolydian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else if (scaleType === 'locrian') {
-          const functions = ['Tonic', 'Supertonic', 'Mediant', 'Subdominant', 'Dominant', 'Submediant', 'Subtonic'];
-          functionText = functions[index];
-        } else {
-          functionText = 'Scale Degree';
-        }
-        
-        return `<span class="chord-name">${note}</span> <span class="chord-notes">${functionText}</span>`;
-      }).join('\n');
-      
       // Render: Table (notes + Roman numerals), then chord functions
       document.getElementById('scale-result').innerHTML = tableHTML + chordFunctions;
 
